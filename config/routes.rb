@@ -1,4 +1,7 @@
 Pets::Application.routes.draw do
+
+  resources :pets, :only => [:index, :show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
