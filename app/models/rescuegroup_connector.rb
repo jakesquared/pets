@@ -44,7 +44,7 @@ class RescuegroupConnector
       :species => data["species"].downcase,
       :breed => data["breed"],
       :gender => data["sex"],
-      :photo => data["pic1"],
+      :photo => data["pic1"], #transform to 235 x 230
       :zip => data["locationZipcode"],
       :remote_id => data["animalID"],
       :kill_date =>data["killDate"] ,
