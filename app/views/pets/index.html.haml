@@ -2,13 +2,16 @@
 
 
 - @pets.each do |pet|
-  .pet
-    = image_tag(pet.pictures.first)
-    %b Name:
-    = pet.name
-    %b Breeds:
-    = pet.breeds.join(', ')
-    %b Age:
-    = pet.age
-    %h4 Description:
-    %p= sanitize(pet.description)
+  .container.pet
+    .card
+      .face.front
+        = image_tag(pet.pictures.first)
+      .face.back
+        %b Name:
+        = pet.name
+        %b Breeds:
+        = pet.breeds.join(', ')
+        %b Age:
+        = pet.age
+        %h4 Description:
+        %p= sanitize(pet.description)

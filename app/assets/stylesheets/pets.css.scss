@@ -1,3 +1,42 @@
 // Place all the styles related to the pets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(http://fonts.googleapis.com/css?family=Gochi+Hand);
+*{font-family: 'Gochi Hand', cursive;}
+.container {
+	width: 264px;
+	height: 325px;
+    float:left;
+    -webkit-perspective: 1000;
+    img{
+        width:100%;
+    }
+   	&:hover{
+   	    .card {
+            -webkit-transform: rotateY(180deg);
+        }
+   	}
+}
+.card {
+	width: 240px; height: 231px;
+	border: 8px solid #fff;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: 1s, 0.5s;
+   .front, .back{
+       width: 264px;
+       height: 325px;
+       overflow:hidden;
+   }
+   .front{
+    background:url('/assets/polaroid.png') no-repeat;
+   }
+   .back {
+        padding: 20px;
+        -webkit-transform: rotateY(180deg);
+        border:1px solid #333;
+   }
+   .face {
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+    }
+}
