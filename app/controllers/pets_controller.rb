@@ -1,10 +1,14 @@
 class PetsController < ApplicationController
+  respond_to :html, :json
+
   def index
     @pets = Pet.all
-    #@pets = petfinder.find_pets('dog', '94107')
+    respond_with(@pets)
   end
 
   def show
+    @pet = Pet.find(params[:id])
+    respond_with(@pet)
   end
 
 private
