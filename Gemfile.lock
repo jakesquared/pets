@@ -133,6 +133,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  crack
   haml (>= 3.0.0)
   haml-rails
   jquery-rails

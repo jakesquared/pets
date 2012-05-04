@@ -1,6 +1,7 @@
 class PetsController < ApplicationController
   def index
-    @pets = petfinder.find_pets('dog', '94107')
+    @pets = Pet.all
+    #@pets = petfinder.find_pets('dog', '94107')
   end
 
   def show

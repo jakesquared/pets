@@ -11,6 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120504191745) do
+
+  create_table "pets", :force => true do |t|
+    t.string  "name"
+    t.string  "breed"
+    t.string  "species"
+    t.string  "gender"
+    t.string  "photo"
+    t.string  "zip"
+    t.string  "size"
+    t.string  "age"
+    t.text    "description"
+    t.string  "status"
+    t.string  "kill_date"
+    t.string  "kill_reason"
+    t.integer "remote_id"
+    t.string  "click_url"
+  end
+
+  add_index "pets", ["remote_id"], :name => "index_pets_on_remote_id", :unique => true
 
 end
