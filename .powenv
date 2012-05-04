@@ -1,12 +1,12 @@
-export PATH ; PATH="/Users/pairing/.rvm/gems/ruby-1.9.2-p320@pets/bin:/Users/pairing/.rvm/gems/ruby-1.9.2-p320@global/bin:/Users/pairing/.rvm/rubies/ruby-1.9.2-p320/bin:/Users/pairing/.rvm/bin:$PATH"
+export PATH ; PATH="/Users/yesbeckjs/.rvm/gems/ruby-1.9.2-p320@pets/bin:/Users/yesbeckjs/.rvm/gems/ruby-1.9.2-p320@global/bin:/Users/yesbeckjs/.rvm/rubies/ruby-1.9.2-p320/bin:/Users/yesbeckjs/.rvm/bin:$PATH"
 export rvm_env_string ; rvm_env_string='ruby-1.9.2-p320@pets'
-export rvm_path ; rvm_path='/Users/pairing/.rvm'
+export rvm_path ; rvm_path='/Users/yesbeckjs/.rvm'
 export rvm_ruby_string ; rvm_ruby_string='ruby-1.9.2-p320'
 export rvm_gemset_name ; rvm_gemset_name='pets'
 export RUBY_VERSION ; RUBY_VERSION='ruby-1.9.2-p320'
-export GEM_HOME ; GEM_HOME='/Users/pairing/.rvm/gems/ruby-1.9.2-p320@pets'
-export GEM_PATH ; GEM_PATH='/Users/pairing/.rvm/gems/ruby-1.9.2-p320@pets:/Users/pairing/.rvm/gems/ruby-1.9.2-p320@global'
-export MY_RUBY_HOME ; MY_RUBY_HOME='/Users/pairing/.rvm/rubies/ruby-1.9.2-p320'
-export IRBRC ; IRBRC='/Users/pairing/.rvm/rubies/ruby-1.9.2-p320/.irbrc'
+export GEM_HOME ; GEM_HOME='/Users/yesbeckjs/.rvm/gems/ruby-1.9.2-p320@pets'
+export GEM_PATH ; GEM_PATH='/Users/yesbeckjs/.rvm/gems/ruby-1.9.2-p320@pets:/Users/yesbeckjs/.rvm/gems/ruby-1.9.2-p320@global'
+export MY_RUBY_HOME ; MY_RUBY_HOME='/Users/yesbeckjs/.rvm/rubies/ruby-1.9.2-p320'
+export IRBRC ; IRBRC='/Users/yesbeckjs/.rvm/rubies/ruby-1.9.2-p320/.irbrc'
 unset MAGLEV_HOME
 unset RBXOPT
