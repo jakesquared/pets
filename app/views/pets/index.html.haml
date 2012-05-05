@@ -4,6 +4,10 @@
     =text_field_tag('zip')
     =submit_tag('search')
 .hero-section
+  .content
+    =form_tag pets_path, :method => :get do
+      =text_field_tag('zip')
+      =submit_tag('search')
 .wrapper.clearfix
   - @pets.each do |pet|
     .container.pet
