@@ -2,7 +2,7 @@ class PetsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @pets = Pet.all
+    @pets = Pet.search(params[:zip])
     respond_with(@pets)
   end
 
