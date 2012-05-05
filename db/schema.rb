@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120505000510) do
+ActiveRecord::Schema.define(:version => 20120505003456) do
 
   create_table "pets", :force => true do |t|
     t.string  "name"
@@ -33,8 +33,7 @@ ActiveRecord::Schema.define(:version => 20120505000510) do
 
   add_index "pets", ["provider", "remote_id"], :name => "index_pets_on_provider_and_remote_id", :unique => true
 
-  create_table "zip", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "zip", :force => true do |t|
     t.integer  "ila_bucket"
     t.integer  "ila_tier"
     t.string   "zip",        :limit => 5
