@@ -2,15 +2,54 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import url(http://fonts.googleapis.com/css?family=Gochi+Hand);
+/* float clearing for IE6 */
+* html .clearfix{
+  height: 1%;
+  overflow: visible;
+}
+
+/* float clearing for IE7 */
+*+html .clearfix{
+  min-height: 1%;
+}
+
+/* float clearing for everyone else */
+.clearfix:after{
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+
 *{font-family: 'Gochi Hand', cursive;}
+html{background:url('/assets/body_bg.jpg') repeat;}
+
+.search-bar{
+    display:none;
+    h1{float:left;}
+    position: fixed;
+    height: 75px;
+    background: red;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999999;
+}
+.hero-section{
+    margin-top:75px;
+    height:300px;
+    width:100%;
+}
+
+
+.wrapper{padding:0 130px;}
 .container {
 	width: 264px;
 	height: 325px;
     float:left;
     -webkit-perspective: 1000;
-    img{
-        width:100%;
-    }
    	&:hover{
    	    .card {
             -webkit-transform: rotateY(180deg);
@@ -18,10 +57,9 @@
    	}
 }
 .card {
-	width: 240px; height: 231px;
-	border: 8px solid #fff;
 	-webkit-transform-style: preserve-3d;
-	-webkit-transition: 1s, 0.5s;
+	-webkit-transition: 0.5s;
+    -webkit-transition-delay: 0.1s;
    .front, .back{
        width: 264px;
        height: 325px;
@@ -29,11 +67,39 @@
    }
    .front{
     background:url('/assets/polaroid.png') no-repeat;
+    p{
+        font-size: 3em;
+        padding: 0 0 0 25px;
+        margin: 0;
+    }
+    .image-cropper{
+        width: 235px;
+        height: 230px;
+        background: black;
+        margin-left: 11px;
+        margin-top: 21px;
+        overflow:hidden;
+        img{
+            height:100%;
+        }
+    }
    }
    .back {
-        padding: 20px;
         -webkit-transform: rotateY(180deg);
-        border:1px solid #333;
+        background:url('/assets/back-bg.jpg');
+        .content{
+            padding:15px;
+        }
+        .thumb img{
+            width: 117px;
+            float: left;
+            margin-right: 12px;
+            border: 1px solid #999;
+        }
+        p.desc{
+          margin:0;
+          padding:0;
+        }
    }
    .face {
         position: absolute;

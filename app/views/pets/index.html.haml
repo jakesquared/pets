@@ -1,17 +1,31 @@
-%h1 Dogs in San Francisco, CA
-
-
-- @pets.each do |pet|
-  .container.pet
-    .card
-      .face.front
-        = image_tag(pet.photo)
-      .face.back
-        %b Name:
-        = pet.name
-        %b Breeds:
-        = pet.breed
-        %b Age:
-        = pet.age
-        %h4 Description:
-        %p= sanitize(pet.description)
+.search-bar
+  %h1 Dogs in San Francisco, CA
+  =form_tag pets_path, :method => :get do
+    =text_field_tag('zip')
+    =submit_tag('search')
+.hero-section
+.wrapper.clearfix
+  - @pets.each do |pet|
+    .container.pet
+      .card
+        .face.front
+          .image-cropper
+            = image_tag(pet.photo)
+          %p
+            = pet.name
+        .face.back
+          .content
+            .thumb
+              = image_tag(pet.photo)
+            %p.desc
+              = truncate(strip_tags(pet.description), :length =>250)
+:javascript
+  $(function(){
+    $(window).scroll(function(){
+     if($(window).scrollTop() > 400){
+      $('.search-bar').fadeIn('fast');
+     }else{
+      $('.search-bar').fadeOut('fast');
+     }
+    });
+  });
