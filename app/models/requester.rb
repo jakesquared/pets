@@ -1,5 +1,5 @@
 class Requester
-  require 'open-uri'
+  attr_accessor :page, :limit
 
   include HTTParty
    parser(
@@ -14,8 +14,15 @@ class Requester
     self.class.base_uri(@connector.url)
   end
 
+  def options
+    {
+      :limit => @limit || 100,
+      :page => @page || 1
+    }
+  end
+
   def make_request
-    data= self.class.get('/rest/', :timeout => 100, :query => @connector.url_params)
+    data = self.class.get('/rest/', :timeout => 100, :query => @connector.url_params(options))
     parse_response(data)
   rescue Timeout
       make_request
@@ -29,16 +36,6 @@ class Requester
 
   def to_model(data)
     attributes = @connector.transform(data)
-    upload_photo(attributes[:photo])
-    Pet.create(attributes) if Pet.where(:remote_id => attributes[:remote_id]).empty?
+    Pet.create(attributes) if Pet.where(:provider => attributes[:provider], :remote_id => attributes[:remote_id]).empty?
   end
-
-  def upload_photo(url)
-    data = open(URI.parse(url)) {|f| f.read }
-    data = StringIO.new(data)
-    uploader = PicUpload.new
-    uploader.store!(data)
-  end
-
-
 end

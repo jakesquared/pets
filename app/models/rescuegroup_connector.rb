@@ -11,7 +11,7 @@ class RescuegroupConnector
     params[:key] = key
     params[:type] =  type(options[:type])
     params[:limit] = limit(options[:limit])
-    params[:page] = page(options[:page])
+    params[:startPage] = page(options[:page])
     params
   end
 
@@ -40,6 +40,7 @@ class RescuegroupConnector
 
   def transform(data)
     {
+      :provider => 'rescuegroup',
       :name => data["name"],
       :species => data["species"].downcase,
       :breed => data["breed"],
