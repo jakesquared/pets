@@ -2,34 +2,59 @@
   %h1 Dogs in San Francisco, CA
   =form_tag pets_path, :method => :get do
     =text_field_tag('zip')
-    =submit_tag('search')
+    =submit_tag('Find A Buddy')
 .hero-section
   .content
-    =form_tag pets_path, :method => :get do
-      =text_field_tag('zip')
-      =submit_tag('search')
-.wrapper.clearfix
+    .form
+      =form_tag pets_path, :method => :get do
+        =text_field_tag('zip',nil, :placeholder => 'Bark your zip code')
+        =submit_tag('Find A Buddy')
+    .options
+      %ul
+        %li.cat I hate cats
+        %li.dog I hate dogs
+        %li.pig I want a pig
+#pets.wrapper.clearfix
   - @pets.each do |pet|
-    .container.pet
-      .card
-        .face.front
-          .image-cropper
-            = image_tag(pet.photo)
-          %p
-            = pet.name
-        .face.back
-          .content
-            .thumb
+    -if pet.photo?
+      %div{:class => "container pet #{pet.species}"}
+        .card
+          .face.front
+            .image-cropper
               = image_tag(pet.photo)
-            %p.desc
-              = truncate(strip_tags(pet.description), :length =>250)
+            %p
+              = pet.name
+          .face.back
+            .content
+              .thumb
+                = image_tag(pet.photo)
+              %p.desc
+                = truncate(strip_tags(pet.description), :length =>250)
 :javascript
   $(function(){
+    if(!($.browser.webkit)){
+      window.location = "http://img42.imageshack.us/img42/561/218catplayingelectricgu.gif";
+    };
+
     $(window).scroll(function(){
      if($(window).scrollTop() > 400){
       $('.search-bar').fadeIn('fast');
      }else{
       $('.search-bar').fadeOut('fast');
      }
+    });
+    $('.options li').click(function(){
+      var animal = $(this).attr('class');
+      if($('#pets.filtered').length){
+        $('#pets').html('<h1>Perhaps you should get a Lizard or a Lion</h1>');
+      }
+      else if(animal == 'pig'){
+        window.location = "http://worldanimalfoundation.homestead.com/AdoptAPig.html";
+      }else{
+        $('#pets .' + animal).fadeOut('fast', function(){
+          $(this).remove();
+          $('#pets').addClass('filtered');
+        });
+      }
     });
   });
