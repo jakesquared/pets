@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120505003456) do
+ActiveRecord::Schema.define(:version => 20120505011056) do
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "pets", :force => true do |t|
     t.string  "name"
@@ -33,7 +49,8 @@ ActiveRecord::Schema.define(:version => 20120505003456) do
 
   add_index "pets", ["provider", "remote_id"], :name => "index_pets_on_provider_and_remote_id", :unique => true
 
-  create_table "zip", :force => true do |t|
+  create_table "zip", :id => false, :force => true do |t|
+    t.integer  "id"
     t.integer  "ila_bucket"
     t.integer  "ila_tier"
     t.string   "zip",        :limit => 5

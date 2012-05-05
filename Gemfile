@@ -8,6 +8,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'petfinder'
 gem 'crack'
+gem 'delayed_job_active_record'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,3 +21,8 @@ end
 group :development, :test do
   gem 'rspec-rails', '>= 2.0.1'
 end
+
+group :development, :test do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+end
+
