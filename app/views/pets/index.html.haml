@@ -20,15 +20,15 @@
 #options.wrapper.clearfix
   .options
     %ul
-      %li.cat I Love Cats
-      %li.dog I Love Dogs
+      %li#cat I Love Cats
+      %li#dog I Love Dogs
 #pets.wrapper.clearfix
   - @pets.each do |pet|
     -if pet.photo?
       %div{:class => "container pet draggable #{pet.species}"}
         .card
           .face.front
-            .image-cropper
+            .image-cropper.bwWrapper
               = image_tag(pet.photo)
             %p
               = pet.name
@@ -37,7 +37,7 @@
               .thumb
                 = image_tag(pet.photo)
               %p.desc
-                = truncate(strip_tags(pet.description), :length =>250)
+                = truncate(strip_tags(pet.description), :length => 150)
 :javascript
   $(function(){
     if(!($.browser.webkit)){
@@ -47,26 +47,22 @@
     $(window).scroll(function(){
      if($(window).scrollTop() > 400){
       $('.search-bar').fadeIn('fast');
-      $('#doggy-bag').css('top','-540px');
      }else{
       $('.search-bar').fadeOut('fast');
      }
     });
 
     $('.options li').click(function(){
-      var hide = $(this).siblings('li').attr('class');
-      $('#pets .' + hide).toggleClass('hidden');
+      var sibling = $(this).siblings('li');
+      var hide = sibling.attr('id');
+      $('#pets .' + hide).addClass('hidden');
+      $('#pets .' + $(this).attr('id')).removeClass('hidden');
     });
 
     $('.drop-zone').click(function(){
-        $(window).scrollTo(0, 500, {onAfter:
-          function(){
-            $('#doggy-bag').animate({'top' : '0px'}, 300);
-          }
-        });
+        $('#doggy-bag').animate({'top' : '0px'}, 300);
       }
     );
-
     $('#doggy-bag .close').click(function(){
       $('#doggy-bag').animate({'top' : '-540px'}, 300);
     });
@@ -79,9 +75,16 @@
     });
     $( ".droppable" ).droppable({
         tolerance: 'touch',
+        over: function(event, ui){
+          $('.drop-zone').toggleClass('hovered');
+          if($('#doggy-bag .items').children().length < 3){
+            ui.draggable.toggleClass('semi-transparent');
+          }
+        },
         drop: function( event, ui ) {
+          $('.drop-zone').toggleClass('hovered');
           if($('#doggy-bag .items').children().length !== 3){
-            $(ui.draggable).attr('style', '');
+            $(ui.draggable).attr('style', '').removeClass('semi-transparent');
             $('#doggy-bag .items').append(ui.draggable);
           }
           else{

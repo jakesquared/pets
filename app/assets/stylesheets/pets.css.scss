@@ -25,6 +25,7 @@
 .ui-draggable-dragging{
     z-index:999999;
 }
+.semi-transparent{opacity:0.5;}
 
 .hidden{display:none;}
 
@@ -48,7 +49,8 @@
   font-size: 0;
 }
 
-*{font-family: 'Gochi Hand', cursive;}
+*{font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;}
+.front p{font-family: 'Gochi Hand', cursive;}
 html{background:url('/assets/body_bg.jpg') repeat;}
 
 .search-bar{
@@ -60,7 +62,7 @@ html{background:url('/assets/body_bg.jpg') repeat;}
     width: 100%;
     left: 0;
     top: 0;
-    z-index: 999999;
+    z-index: 99;
     .drop-zone{
         width: 400px;
         height: 100%;
@@ -72,13 +74,17 @@ html{background:url('/assets/body_bg.jpg') repeat;}
         position: absolute;
         &:hover{
             background:blue;
+            cursor:pointer;
         }
+    }
+    .hovered{
+        background:orange !important;
     }
 }
 #doggy-bag{
   width:100%;
   height:540px;
-  position:absolute;
+  position:fixed;
   top:-540px;
   background:purple;
   z-index:999;
@@ -209,6 +215,7 @@ html{background:url('/assets/body_bg.jpg') repeat;}
 	-webkit-transform-style: preserve-3d;
 	-webkit-transition: 0.5s;
     -webkit-transition-delay: 0.3s;
+    cursor:move;
    .front, .back{
        width: 264px;
        height: 325px;
@@ -252,6 +259,7 @@ html{background:url('/assets/body_bg.jpg') repeat;}
         p.desc{
           margin:0;
           padding:0;
+          line-height:1.6em;
         }
    }
    .face {
