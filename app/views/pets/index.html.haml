@@ -1,3 +1,7 @@
+#doggy-bag
+  .content
+    .close
+    .items
 .search-bar
   %h1 Dogs in San Francisco, CA
   =form_tag pets_path, :method => :get do
@@ -6,6 +10,7 @@
   .drop-zone.droppable
 .hero-section
   .content
+    .logo
     %h1.main-heading
       Scruffy Buddy
     .form
@@ -42,24 +47,46 @@
     $(window).scroll(function(){
      if($(window).scrollTop() > 400){
       $('.search-bar').fadeIn('fast');
+      $('#doggy-bag').css('top','-540px');
      }else{
       $('.search-bar').fadeOut('fast');
      }
     });
 
     $('.options li').click(function(){
-      if($(this).hasClass('.invisible'))
       var hide = $(this).siblings('li').attr('class');
       $('#pets .' + hide).toggleClass('hidden');
     });
 
+    $('.drop-zone').click(function(){
+        $(window).scrollTo(0, 500, {onAfter:
+          function(){
+            $('#doggy-bag').animate({'top' : '0px'}, 300);
+          }
+        });
+      }
+    );
+
+    $('#doggy-bag .close').click(function(){
+      $('#doggy-bag').animate({'top' : '-540px'}, 300);
+    });
+
+
+
     $( ".draggable" ).draggable({
       revert: 'invalid',
-      appendTo: 'body'
+      scroll: false
     });
     $( ".droppable" ).droppable({
+        tolerance: 'touch',
         drop: function( event, ui ) {
-            alert('test');
+          if($('#doggy-bag .items').children().length !== 3){
+            $(ui.draggable).attr('style', '');
+            $('#doggy-bag .items').append(ui.draggable);
+          }
+          else{
+            $( '.draggable' ).draggable( "option", "revert", true );
+          }
         }
     });
 

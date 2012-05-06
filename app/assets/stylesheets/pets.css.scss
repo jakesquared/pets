@@ -22,6 +22,10 @@
     }
 }
 
+.ui-draggable-dragging{
+    z-index:999999;
+}
+
 .hidden{display:none;}
 
 * html .clearfix{
@@ -66,7 +70,33 @@ html{background:url('/assets/body_bg.jpg') repeat;}
         padding: 0;
         top: 0;
         position: absolute;
+        &:hover{
+            background:blue;
+        }
     }
+}
+#doggy-bag{
+  width:100%;
+  height:540px;
+  position:absolute;
+  top:-540px;
+  background:purple;
+  z-index:999;
+  .content{
+      width:900px;
+      height:100%;
+      margin:0 auto;
+      padding:20px;
+      position:relative;
+      .close{
+        width:300px;
+        height:50px;
+        background:black;
+        position:absolute;
+        right:300px;
+        bottom:40px;;
+      }
+  }
 }
 .hero-section{
     height: 370px;
@@ -76,6 +106,14 @@ html{background:url('/assets/body_bg.jpg') repeat;}
     position:relative;
     background:#FFDE20;
     .content{
+        .logo{
+            width:236;
+            height:232px;
+            background:url('/assets/pug.png');
+            position:absolute;
+            top:0;
+            left:0;
+        }
         padding-top:30px;
         h1{
             text-align:center;
