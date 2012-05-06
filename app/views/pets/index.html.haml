@@ -3,21 +3,24 @@
   =form_tag pets_path, :method => :get do
     =text_field_tag('zip')
     =submit_tag('Find A Buddy')
+  .drop-zone.droppable
 .hero-section
   .content
+    %h1.main-heading
+      Scruffy Buddy
     .form
       =form_tag pets_path, :method => :get do
         =text_field_tag('zip',nil, :placeholder => 'Bark your zip code')
         =submit_tag('Find A Buddy')
-    .options
-      %ul
-        %li.cat I hate cats
-        %li.dog I hate dogs
-        %li.pig I want a pig
+#options.wrapper.clearfix
+  .options
+    %ul
+      %li.cat I Love Cats
+      %li.dog I Love Dogs
 #pets.wrapper.clearfix
   - @pets.each do |pet|
     -if pet.photo?
-      %div{:class => "container pet #{pet.species}"}
+      %div{:class => "container pet draggable #{pet.species}"}
         .card
           .face.front
             .image-cropper
@@ -43,18 +46,21 @@
       $('.search-bar').fadeOut('fast');
      }
     });
+
     $('.options li').click(function(){
-      var animal = $(this).attr('class');
-      if($('#pets.filtered').length){
-        $('#pets').html('<h1>Perhaps you should get a Lizard or a Lion</h1>');
-      }
-      else if(animal == 'pig'){
-        window.location = "http://worldanimalfoundation.homestead.com/AdoptAPig.html";
-      }else{
-        $('#pets .' + animal).fadeOut('fast', function(){
-          $(this).remove();
-          $('#pets').addClass('filtered');
-        });
-      }
+      if($(this).hasClass('.invisible'))
+      var hide = $(this).siblings('li').attr('class');
+      $('#pets .' + hide).toggleClass('hidden');
     });
+
+    $( ".draggable" ).draggable({
+      revert: 'invalid',
+      appendTo: 'body'
+    });
+    $( ".droppable" ).droppable({
+        drop: function( event, ui ) {
+            alert('test');
+        }
+    });
+
   });
