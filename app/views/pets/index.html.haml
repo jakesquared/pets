@@ -5,18 +5,19 @@
 .search-bar
   %h1 Dogs in San Francisco, CA
   =form_tag pets_path, :method => :get do
-    =text_field_tag('zip')
-    =submit_tag('Find A Buddy')
+    =text_field_tag('zip',nil, :placeholder => 'Enter your zip code')
+    =submit_tag('Find A Pal')
   .drop-zone.droppable
 .hero-section
   .content
+    .show-doggy-bag
     .logo
     %h1.main-heading
       Scruffy Buddy
     .form
       =form_tag pets_path, :method => :get do
-        =text_field_tag('zip',nil, :placeholder => 'Bark your zip code')
-        =submit_tag('Find A Buddy')
+        =text_field_tag('zip',nil, :placeholder => 'Enter your zip code')
+        =submit_tag('Find A Pal')
 #options.wrapper.clearfix
   .options
     %ul
@@ -33,6 +34,7 @@
       %div{:class => "container pet draggable #{pet.species}"}
         .card
           .face.front
+            .filter
             .image-cropper.bwWrapper
               = image_tag(pet.photo)
             %p
@@ -48,6 +50,15 @@
     if(!($.browser.webkit)){
       window.location = "http://img42.imageshack.us/img42/561/218catplayingelectricgu.gif";
     };
+
+    $.each($('.pet'), function(){
+      var amount = randomFromTo(-10, 10);
+      $(this).css({'-webkit-transform':'rotate('+amount+'deg)'});
+    })
+    function randomFromTo(from, to){
+       return Math.floor(Math.random() * (to - from + 1) + from);
+    }
+
 
     $(window).scroll(function(){
      if($(window).scrollTop() > 400){
@@ -69,7 +80,7 @@
       }
     );
     $('#doggy-bag .close').click(function(){
-      $('#doggy-bag').animate({'top' : '-540px'}, 300);
+      $('#doggy-bag').animate({'top' : '-400px'}, 300);
     });
 
 
@@ -98,4 +109,10 @@
         }
     });
 
-  });
+    $('.card').addEventListener(
+       'webkitTransitionEnd',
+       function( event ) {
+           alert( "Finished transition!" );
+       }, false );
+
+    });
