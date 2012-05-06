@@ -22,6 +22,11 @@
     %ul
       %li#cat I Love Cats
       %li#dog I Love Dogs
+-if @pets.empty?
+  -@locations.each do |location|
+    %a{:href => "?zip=#{location.zip}"}
+      = "#{location.city}, #{location.state}"
+-else
 #pets.wrapper.clearfix
   - @pets.each do |pet|
     -if pet.photo?

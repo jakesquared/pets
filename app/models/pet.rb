@@ -28,4 +28,11 @@ class Pet < ActiveRecord::Base
     [return_values, cats].flatten
   end
 
+  def self.locations_with_pets
+    zips = Pet.select(:zip).group(:zip).map(&:zip)
+    Rails.logger.debug("zips" + zips.inspect)
+    Zip.select([:zip, :city, :state]).where(:zip => zips).group(:zip).group(:city).group(:state)
+  end
+
+
 end

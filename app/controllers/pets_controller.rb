@@ -3,7 +3,11 @@ class PetsController < ApplicationController
 
   def index
     @pets = Pet.search(params[:zip])
-    respond_with(@pets)
+    if @pets.count > 0
+      respond_with(@pets)
+    else
+      @locations = Pet.locations_with_pets
+    end
   end
 
   def show
