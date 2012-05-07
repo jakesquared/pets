@@ -20,9 +20,15 @@
         =submit_tag('Find A Pal')
 #options.wrapper.clearfix
   .options
-    %ul
-      %li#cat I Love Cats
-      %li#dog I Love Dogs
+    %ul.clearfix
+      %li#cat
+        I
+        %span.heart
+        Cats
+      %li#dog
+        I
+        %span.heart
+        Dogs
 -if @pets.empty?
   -@locations.each do |location|
     %a{:href => "?zip=#{location.zip}"}
@@ -69,7 +75,8 @@
     });
 
     $('.options li').click(function(){
-      var sibling = $(this).siblings('li');
+      var sibling = $(this).siblings('li').addClass('strike');
+      $(this).removeClass('strike');
       var hide = sibling.attr('id');
       $('#pets .' + hide).addClass('hidden');
       $('#pets .' + $(this).attr('id')).removeClass('hidden');
@@ -109,10 +116,4 @@
         }
     });
 
-    $('.card').addEventListener(
-       'webkitTransitionEnd',
-       function( event ) {
-           alert( "Finished transition!" );
-       }, false );
-
-    });
+  });//en dom ready
