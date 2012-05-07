@@ -1,19 +1,26 @@
 #doggy-bag
-  .content
-    .close
+  .doggy-bag-content
+    .options
+      .close
+      .reset
     .items
+      %h1
+        You haven't added any buddies yet.
 .search-bar
   %h1 Dogs in San Francisco, CA
   =form_tag pets_path, :method => :get do
     =text_field_tag('zip',nil, :placeholder => 'Enter your zip code')
-    =submit_tag('Find A Pal')
+    =submit_tag('Change location')
   .drop-zone.droppable
 .hero-section
   .content
     .show-doggy-bag
     .logo
     %h1.main-heading
-      Scruffy Buddy
+      Scruffy
+      &nbsp;&nbsp;
+      %span.cat-icon
+      Buddy
     .form
       =form_tag pets_path, :method => :get do
         =text_field_tag('zip',nil, :placeholder => 'Enter your zip code')
@@ -41,7 +48,7 @@
         .card
           .face.front
             .filter
-            .image-cropper.bwWrapper
+            .image-cropper
               = image_tag(pet.photo)
             %p
               = pet.name
@@ -49,6 +56,7 @@
             .content
               .thumb
                 = image_tag(pet.photo)
+              .favicon
               %p.desc
                 = truncate(strip_tags(pet.description), :length => 150)
 :javascript
@@ -65,9 +73,8 @@
        return Math.floor(Math.random() * (to - from + 1) + from);
     }
 
-
     $(window).scroll(function(){
-     if($(window).scrollTop() > 400){
+     if($(window).scrollTop() > 300){
       $('.search-bar').fadeIn('fast');
      }else{
       $('.search-bar').fadeOut('fast');
@@ -82,15 +89,17 @@
       $('#pets .' + $(this).attr('id')).removeClass('hidden');
     });
 
-    $('.drop-zone').click(function(){
+    $('.drop-zone, .show-doggy-bag').click(function(){
         $('#doggy-bag').animate({'top' : '0px'}, 300);
       }
     );
     $('#doggy-bag .close').click(function(){
       $('#doggy-bag').animate({'top' : '-400px'}, 300);
     });
-
-
+    $('#doggy-bag .reset').click(function(){
+      $('#doggy-bag .pet').remove();
+      $('.items h1').removeClass('hidden');
+    });
 
     $( ".draggable" ).draggable({
       revert: 'invalid',
@@ -105,8 +114,11 @@
           }
         },
         drop: function( event, ui ) {
+          if(!($('.items h1').hasClass('hidden'))){
+           $('.items h1').addClass('hidden');
+          }
           $('.drop-zone').toggleClass('hovered');
-          if($('#doggy-bag .items').children().length !== 3){
+          if($('#doggy-bag .items').children().length !== 4){
             $(ui.draggable).attr('style', '').removeClass('semi-transparent');
             $('#doggy-bag .items').append(ui.draggable);
           }
@@ -115,5 +127,19 @@
           }
         }
     });
+
+    $('.favicon').click(function(){
+      if(!($('.items h1').hasClass('hidden'))){
+       $('.items h1').addClass('hidden');
+      }
+      var pet = $(this).closest('.pet');
+      console.log(pet);
+      if(($('#doggy-bag .items').children().length !== 4) && (!$(this).hasClass('faved'))){
+        $(this).addClass('faved');
+        pet.clone().appendTo('#doggy-bag .items');
+      }
+    });
+
+
 
   });//en dom ready
