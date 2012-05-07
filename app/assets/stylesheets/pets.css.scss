@@ -256,11 +256,26 @@ body{margin:0;}
 
 #options{
     margin-bottom: 20px;
-    margin-top: -16px;
     padding-top:10px;
     background: black;
     margin-left: -8px;
     border-bottom:1px solid #333;
+    position:relative;
+    .blog-out{
+        display:inline-block;
+        right:100px;
+        top:40px;
+        padding:10px;
+        color:white;
+        background:red;
+        position:absolute;
+        cursor:pointer;
+        opacity:0.75;
+        border-radius:5px;
+        &:hover{
+            opacity:1;
+        }
+    }
     .options{
         ul{
             list-style:none;
@@ -297,6 +312,10 @@ body{margin:0;}
                 background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* IE10+ */
                 background: linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C */
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+                opacity:0.75;
+                &:hover{
+                    opacity:1;
+                }
             }
         }
     }
@@ -425,4 +444,70 @@ body{margin:0;}
             opacity:1;
         }
     }
+}
+
+#blog{
+    width:1000px;
+    height:400px;
+    position:relative;
+    margin:15px auto 40px auto;
+    display:none;
+    borddr:1px solid #333;
+    .scrollable{
+        width:1000px;
+        height:400px;
+        background:red;
+        position:relative;
+        overflow:hidden;
+        height:0px;
+        .items{
+            position:absolute;
+            width:2000em;
+            height:100%;
+            background:black;
+            .post{
+                width:1000px;
+                height:100%;
+                background:white;
+                float:left;
+                margin-right:1px;
+                .image{
+                    width:50%;
+                    float:left;
+                    img{
+                        height:100%;
+                    }
+                }
+                .content{
+                    width:50%;
+                    float:right;
+                    .pad{padding:20px;}
+                }
+            }
+        }
+    }
+    .next, .prev{
+        width:100px;
+        height:100px;
+        top:150px;
+        position:absolute;
+        cursor:pointer;
+    }
+    .next{
+        right:-120px;
+        opacity:0.75;
+        background:url('/assets/next-icon.png');
+        &:hover{
+            opacity:1;
+        }
+    }
+    .prev{
+        left:-120px;
+        opacity:0.75;
+        background:url('/assets/prev-icon.png');
+        &:hover{
+            opacity:1;
+        }
+    }
+
 }

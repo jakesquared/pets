@@ -36,6 +36,44 @@
         I
         %span.heart
         Dogs
+  .blog-out
+    Blog out with your dog out
+#blog
+  .next
+  .prev
+  .scrollable
+    .items
+      .post
+        .image
+          %img{:src => "http://images.dailydawdle.com/animals-in-sombreros8.jpg"}
+        .content
+          .pad
+            %h2
+              ¡ 20 Animals in Sombreros!
+            %p
+              It’s Cinco De Mayo, ya’ll… and what does that mean for us here at ScruffyBuddy? Animals. In. Sombreros.
+      .post
+        .image
+          %img{:src => "http://us.123rf.com/400wm/400/400/kellyrichardsonfl/kellyrichardsonfl1011/kellyrichardsonfl101100180/8296986-cinco-de-mayo-partying-yellow-labrador-retriever-wearing-a-red-blue-natural-woven-sombrero-hat-isola.jpg"}
+        .content
+          .pad
+            %h2
+              5 Ways to Prepare for a New Pet
+            %p
+              Here at ScruffyBuddy we’re all about 2 things. Finding you a new pet, and showing you pictures of other people’s pets. We do plenty of the first (and the latter, really) but once in a while we find it’s time for a serious note.
+            %p
+              Adopting a new pet is no laughing matter, and while it may seem all fun and games there are certain things you should do to prepare yourself for little Lupo or Ludacris.
+      .post
+        .image
+          %img{:src => "http://img0.etsystatic.com/il_570xN.303492036.jpg"}
+        .content
+          .pad
+            %h2
+              10 Bizarre Cat Paintings found on Etsy
+            %p
+              One with wine in a chalice, the other with a pimp stick. Me-ow. Also, there is an uncomfortable amount of results when one searches “vampire cats” on Etsy, btw.
+              
+  .nav
 -if @pets.empty?
   #locations.wrapper.clearfix
     -@locations.each do |location|
@@ -142,6 +180,13 @@
       }
     });
 
+    $('.scrollable').scrollable({
+      circular:true
+    });
 
+    $('.blog-out').click(function(){
+      $('#blog').show();
+      $('.scrollable').animate({'height':'400px'}, 'fast');
+    });
 
   });//en dom ready
