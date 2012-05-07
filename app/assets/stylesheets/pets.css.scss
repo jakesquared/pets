@@ -424,7 +424,10 @@ body{margin:0;}
         }
         p.desc{
           margin:0;
-          padding:0;
+          padding:5px;
+          background:#d5d8d9;
+          border:1px solid #ccc;
+          border-radius:5px;
           line-height:1.6em;
         }
    }
