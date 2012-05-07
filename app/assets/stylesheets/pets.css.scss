@@ -76,19 +76,19 @@ body{margin:0;}
     .drop-zone{
         width: 400px;
         height: 100%;
-        background: red;
+        background:url('/assets/drag-buddy.jpg') 0 17px;
         right: 0;
         margin: 0;
         padding: 0;
         top: 0;
         position: absolute;
         &:hover{
-            background:blue;
+            background:url('/assets/click-buddy.jpg') 0 17px;
             cursor:pointer;
         }
     }
     .hovered{
-        background:orange !important;
+        background:url('/assets/drop-buddy.jpg') 0 17px !important;
     }
     form{
         margin-top:25px;
@@ -133,6 +133,10 @@ body{margin:0;}
         text-align:center;
         padding-top:100px;
         text-shadow: 1px 1px 0px #fff;
+        font-family: 'Poiret One', cursive;
+        .card{
+            -webkit-transform:rotate(0deg);
+        }
       }
       .options{
         width:110px;

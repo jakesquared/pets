@@ -133,10 +133,9 @@
        $('.items h1').addClass('hidden');
       }
       var pet = $(this).closest('.pet');
-      console.log(pet);
       if(($('#doggy-bag .items').children().length !== 4) && (!$(this).hasClass('faved'))){
         $(this).addClass('faved');
-        pet.clone().appendTo('#doggy-bag .items');
+        pet.clone().attr('style', '').appendTo('#doggy-bag .items');
       }
     });
 

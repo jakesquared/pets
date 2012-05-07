@@ -49,8 +49,7 @@ ActiveRecord::Schema.define(:version => 20120505011056) do
 
   add_index "pets", ["provider", "remote_id"], :name => "index_pets_on_provider_and_remote_id", :unique => true
 
-  create_table "zip", :id => false, :force => true do |t|
-    t.integer  "id"
+  create_table "zip", :force => true do |t|
     t.integer  "ila_bucket"
     t.integer  "ila_tier"
     t.string   "zip",        :limit => 5
