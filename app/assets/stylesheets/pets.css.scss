@@ -60,6 +60,7 @@ html{background:url('/assets/body_bg.jpg') repeat;}
 body{margin:0;}
 .search-bar{
     display:none;
+    border-bottom:1px solid #333;
     h1{
         float:left;
         color:#fff;
@@ -370,7 +371,7 @@ body{margin:0;}
                 width:50px;
                 height:50px;
                 background:url('/assets/favicon.png');
-                top:20px;
+                top:10px;
                 right:45px;
                 opacity:0.6;
                 &:hover{
@@ -381,6 +382,20 @@ body{margin:0;}
             .faved{
                 background:url('/assets/faved.png') !important;
                 opacity:1 !important;
+            }
+            span.click-off{
+                display:inline-block;
+                position:absolute;
+                width:50px;
+                height:50px;
+                top:60px;
+                right:45px;
+                background:url('/assets/click-off-icon.png');
+                opacity:0.6;
+                &:hover{
+                    opacity:1;
+                    cursor:pointer;
+                }
             }
         }
         .thumb img{
@@ -397,5 +412,17 @@ body{margin:0;}
    .face {
         position: absolute;
         -webkit-backface-visibility: hidden;
+    }
+}
+
+#location{
+    a{
+        color:white;
+        text-decoration:none;
+        display:block;
+        opacity:0.75;
+        &:hover{
+            opacity:1;
+        }
     }
 }

@@ -37,9 +37,10 @@
         %span.heart
         Dogs
 -if @pets.empty?
-  -@locations.each do |location|
-    %a{:href => "?zip=#{location.zip}"}
-      = "#{location.city}, #{location.state}"
+  #locations.wrapper.clearfix
+    -@locations.each do |location|
+      %a{:href => "?zip=#{location.zip}"}
+        = "#{location.city}, #{location.state}"
 -else
 #pets.wrapper.clearfix
   - @pets.each do |pet|
@@ -57,6 +58,8 @@
               .thumb
                 = image_tag(pet.photo)
               .favicon
+              %a{:href => "#{pet.click_url}"}
+                %span.click-off
               %p.desc
                 = truncate(strip_tags(pet.description), :length => 150)
 :javascript
@@ -128,7 +131,7 @@
         }
     });
 
-    $('.favicon').click(function(){
+    $('#pets .favicon').click(function(){
       if(!($('.items h1').hasClass('hidden'))){
        $('.items h1').addClass('hidden');
       }
