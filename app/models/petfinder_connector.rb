@@ -30,17 +30,30 @@ class PetfinderConnector
       :remote_id => data.id,
       :description => data.description,
       :age => data.age,
+      :contact_email => contact_email(data)
     }
   end
 
+  def shelter(data)
+    @shelter ||= @client.shelter(data.shelter_id)
+  end
+
   def zip_from_result(data)
-    shelter = @client.shelter(data.shelter_id)
-    if shelter
-      shelter.zip
+    shelter(data)
+    if @shelter
+      @shelter.zip
     end
   rescue => e
     puts e
     #do nothing
   end
+
+  def contact_email(data)
+    shelter(data)
+    if @shelter
+
+    end
+  end
+
 
 end

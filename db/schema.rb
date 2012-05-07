@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120505011056) do
+ActiveRecord::Schema.define(:version => 20120506212732) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20120505011056) do
     t.integer "remote_id"
     t.string  "click_url"
     t.string  "provider"
+    t.string  "contact_email"
   end
 
   add_index "pets", ["provider", "remote_id"], :name => "index_pets_on_provider_and_remote_id", :unique => true

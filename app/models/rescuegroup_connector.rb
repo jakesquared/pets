@@ -54,6 +54,7 @@ class RescuegroupConnector
       :click_url => data["petURL"],
       :age => data["age"],
       :remote_id => data["animalID"],
+      :contact_email => data["contactEmail"],
     }
   end
 end
